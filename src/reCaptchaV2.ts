@@ -1,4 +1,4 @@
-import { pollOutRequest, sendInRequest } from "./app";
+import { pollOutRequest, sendInRequest } from "./index";
 import { CaptchaResponse } from "./types/captcha";
 
 export interface ReCaptchaV2Options {

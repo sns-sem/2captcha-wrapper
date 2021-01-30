@@ -1,7 +1,12 @@
 {
-  "name": "2captcha-wrapper",
-  "version": "1.0.0",
+  "name": "2captcha-wrapper-ts",
+  "version": "1.0.2",
+  "private": false,
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
+    "build": "tsc",
+    "publish": "yarn build && npm publish",
     "start": "ts-node ./src/app.ts"
   },
   "dependencies": {
