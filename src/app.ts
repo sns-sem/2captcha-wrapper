@@ -1,12 +1,8 @@
 import fetch from "node-fetch";
 import qs from "qs";
 import reCaptchaV2 from "./reCaptchaV2";
-import { CaptchaMethods, TwoCaptchaResponse } from "./types/captcha";
+import { TwoCaptchaResponse } from "./types/captcha";
 import { sleep } from "./util";
-
-const captchaMethods = {
-  reCaptchaV2,
-};
 
 interface InOptions {
   method: string;
@@ -55,10 +51,9 @@ export const sendOutRequest = async (
 };
 
 const initSolver = (apiKey: string, defaultPolling: number = 30000) => {
-  return Object.entries(captchaMethods).reduce((methods, [name, fn]) => {
-    methods[name as keyof typeof captchaMethods] = fn.bind(null, apiKey, defaultPolling);
-    return methods;
-  }, {} as CaptchaMethods);
+  return {
+    reCaptchaV2: reCaptchaV2.bind(null, apiKey, defaultPolling),
+  }
 };
 
 export default initSolver;
