@@ -1,20 +1,10 @@
-import { pollOutRequest, sendInRequest } from "./index";
-import { CaptchaResponse } from "./types/captcha";
+import { pollOutRequest, sendInRequest } from "../index";
+import { BaseInOptions, CaptchaResponse } from "../types/captcha";
 
-export interface ReCaptchaV2Options {
+export interface ReCaptchaV2Options extends BaseInOptions {
   googlekey: string;
   pageurl: string;
   invisible?: boolean;
-  "data-s"?: string;
-  cookies?: string;
-  userAgent?: string;
-  header_acao?: boolean;
-  pingback?: string;
-  soft_id?: number;
-  proxy?: string;
-  proxytype?: "HTTP" | "HTTPS" | "SOCKS4" | "SOCKS5";
-  polling?: number;
-  retry?: boolean;
 }
 
 const reCaptchaV2 = async (

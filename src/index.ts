@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import qs from "qs";
-import reCaptchaV2 from "./reCaptchaV2";
+import methods from "./methods";
 import { TwoCaptchaResponse } from "./types/captcha";
 import { sleep } from "./util";
 
@@ -51,9 +51,11 @@ export const sendOutRequest = async (
 };
 
 const initSolver = (apiKey: string, defaultPolling: number = 30000) => {
+  // Improve this in the future if more methods get added
   return {
-    reCaptchaV2: reCaptchaV2.bind(null, apiKey, defaultPolling),
-  }
+    reCaptchaV2: methods.reCaptchaV2.bind(null, apiKey, defaultPolling),
+    funCaptcha: methods.funCaptcha.bind(null, apiKey, defaultPolling),
+  };
 };
 
 export default initSolver;
